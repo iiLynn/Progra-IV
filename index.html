@@ -1,171 +1,155 @@
-<!DOCTYPE html> <!--Definicion de tipo de documento-->
-<html lang="en"> <!--Aertura de la pagina html-->
-<head> <!--Encabezado de la pagina html-->
-    <meta charset="UTF-8"> <!--Codigicacion de Caracteres especiales-->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--IE-->
+<!DOCTYPE html><!-- Definicion de tipo de documento -->
+<html lang="en"><!-- Apertura de la pagina html -->
+<head><!-- Encabezado de la pagina html -->
+    <meta charset="UTF-8"><!-- Codificacion de Caracteres especiales  -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- IE -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Primer Proyectto en HTML</title>
-    <style>
-        body{
-            background-color: #2975f9;
-        }
-        .styled-table{ 
-            border-collapse: collapse; 
-            margin: 25px 0; 
-            font-size: 1em; 
-            font-family: sans-serif; 
-            min-width: 450px; 
-            box-shadow: 0 0 20px rgba(15, 15, 15, 0.15); 
-
-        }
-
-        .styled-table h2{ 
-            background-color: #2e0098; 
-            color: #ffffff; 
-            text-align: center; 
-        }
-
-        .styled-table th, .styled-table td { 
-            padding: 12px 15px; 
-        }
-
-        .styled-table tbody tr { 
-            border-bottom: 1px solid #dddddd; 
-        } 
-
-        .styled-table tbody tr:nth-of-type(even) { 
-            background-color: #f3f3f3;
-        } 
-
-        .styled-table tbody tr:last-of-type { 
-            border-bottom: 2px solid #009879; 
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <title>::.. APP ACADEMICA ..::</title>
 </head>
-<body> <!--Contenido de la pagina html-->
-
-    <h1>Bienvenidos a Programaciono IV</h1>
-    <h3>Hola Mundo</h3>
-    <p>Esto es un parrafo: Aqui van a ir muchas lineas <br>
-        de texto
-    </p>
-    <form name="frmAlumnos" id="frmAlumnos">
-        <table class="styled-table"> 
-            <thead> 
-                <tr> 
-                    <h2>Formulario de Alumno</h2>
-                </tr> 
-                
-            </thead> 
-            <tbody> 
-                <tr> 
-                    <td>
-                        <label for="txtCodigoAlumno">Codigo:</label>
-                    </td> 
-                    <td>
-                        <input required title="Ingrese un codigo de estudiante valido" pattern="^[US|SM]{2}[IS|LE]{2}[0-9]{6}"
-                        type="text" name="txtCodigoAlumno" id="txtCodigoAlumno">
-                    </td> 
-
-                    <td>
-                        <label for="txtNombreAlumno">Nombre:</label>
-                    </td> 
-                    <td>
-                        <input required pattern="^[A-Za-zÑñáéíóú ]{3,75}}"
-                        type="text" name="txtNombreAlumno" id="txtNombreAlumno">
-                    </td> 
-                </tr> 
-                
-                <tr> 
-                    <td>
-                        <label for="txtDireccionAlumno">Direccion:</label>
-                    </td> 
-                    <td>
-                        <input required pattern="^[A-Za-zÑñáéíóú ]{3,75}}"
-                        type="text" name="txtDireccionAlumno" id="txtDireccionAlumno">
-                    </td> 
-
-                    <td>
-                        <label for="txtGeneroAlumno">Genero:</label>
-                    </td>
-                    <td>
-                        <input required pattern="^[A-Za-zÑñáéíóú ]{3,75}}"
-                        type="text" name="txtGeneroAlumno" id="txtGeneroAlumno">
-                    </td>
-                </tr> 
-                <tr>
-                    <td>
-                        <label for="txtcelularAlumno">Celular:</label>
-                    </td>
-                    <td>
-                        <input required pattern="^[0-9]{8}"
-                        type="text" name="txtCelularAlumno" id="txtCelularAlumno">
-                    </td>
-
-                    <td>
-                        <label for="txtNacimientoAlumno">Fecha de Nacimiento:</label>
-                    </td>
-                    <td>
-                        <input required 
-                        type="date" name="txtNacimientoAlumno" id="txtNacimientoAlumno">
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="submit" value="Guardar Datos">
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </form>
-<!--
-    <form name="frmAlumnos" id="frmAlumnos">
-        <h2>Formulario de Alumno</h2>
-        <br>
-        <label for="txtCodigoAlumno">Codigo:</label>
-        <input required title="Ingrese un codigo de estudiante valido" pattern="^[US|SM]{2}[IS|LE]{2}[0-9]{6}"
-        type="text" name="txtCodigoAlumno" id="txtCodigoAlumno">
-
-        <label for="txtNombreAlumno">Nombre:</label>
-        <input required pattern="^[A-Za-zÑñáéíóú ]{3,75}}"
-        type="text" name="txtNombreAlumno" id="txtNombreAlumno">
-
-        <br>
-        <br>
-
-        <label for="txtDireccionAlumno">Direccion:</label>
-        <input required pattern="^[A-Za-zÑñáéíóú ]{3,75}}"
-        type="text" name="txtDireccionAlumno" id="txtDireccionAlumno">
-        
-        <label for="txtGeneroAlumno">Genero:</label>
-        <input required pattern="^[A-Za-zÑñáéíóú ]{3,75}}"
-        type="text" name="txtGeneroAlumno" id="txtGeneroAlumno">
-        <br>
-        <br>
-
-        <label for="txtNacimientoAlumno">Fecha de Nacimiento:</label>
-        <input required 
-        type="date" name="txtNacimientoAlumno" id="txtNacimientoAlumno">
-        <br>
-
-        <input type="submit" value="Guardar Datos">
-       
-    </form>
- -->
+<body><!-- Contenido de la pagina html -->
+    <div class="container" id="app">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="card border-primary">
+                    <div class="card-header bg-primary text-white">REGISTRO DE ALUMNOS</div>
+                    <div class="card-body">
+                        <form id="frmDocente" @submit.prevent="guardarDocente" @reset.prevent="nuevoDocente()">
+                            <div class="row p-1">
+                                <div class="col-3 col-md-2">CODIGO:</div>
+                                <div class="col-9 col-md-3">
+                                    <input class="form-control" type="text" v-model="docente.codigo" name="txtCodigoDocente" id="txtCodigoDocente">
+                                </div>
+                            </div>
+                            <div class="row p-1">
+                                <div class="col-3 col-md-2">NOMBRE:</div>
+                                <div class="col-9 col-md-6">
+                                    <input class="form-control" type="text" v-model="docente.nombre" name="txtNombreDocente" id="txtNombreDocente">
+                                </div>
+                            </div>    
+                           <div class="row p-1">
+                                <div class="col-3 col-md-2">NUMERO:</div>
+                                <div class="col-9 col-md-3">
+                                    <input class="form-control" type="number" v-model="docente.numero" name="txtNombreDocente" id="txtNombreDocente">
+                                </div>
+                            </div>
+                            <div class="row p-1">
+                                <div class="col-3 col-md-2">DIRECCION:</div>
+                                <div class="col-9 col-md-9">
+                                    <input class="form-control" type="text" v-model="docente.direccion" name="txtNombreDocente" id="txtNombreDocente">
+                                </div>
+                            <div class="row p-1">
+                                <div class="col col-md-6">
+                                    <input class="btn btn-success" type="submit" value="Guardar Datos">
+                                </div>
+                                <div class="col col-md-6">
+                                    <input class="btn btn-warning" type="reset" value="Nuevo Registro">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12">
+                <div class="card text-bg-light">
+                    <div class="card-header">CONSULTA DE ALUMNOS</div>
+                    <div class="card-body">
+                        <form>
+                            <table class="table table-dark table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>BUSCAR:</th>
+                                        <th colspan="4"><input type="text" @keyup="listarDocentes()" v-model="buscar" 
+                                            class="form-control" placeholder="Busar por nombre" ></th>
+                                    </tr>
+                                    <tr>
+                                        <th>CODIGO</th>
+                                        <th>NOMBRE</th>
+                                        <th>NUMERO</th>
+                                        <th>DIRECCION</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="docente in docentes" @click='modificarDocente(docente)' :key="docente.idDocente">
+                                        <td>{{docente.codigo}}</td>
+                                        <td>{{docente.nombre}}</td>
+                                        <td>{{docente.direccion}}</td>
+                                        <td>{{docente.numero}}</td>
+                                        <td><button @click.prevent="eliminarDocente(docente)" class="btn btn-danger">Eliminar</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script>
-        //DOM -> Modelo de Objetos de Documento
-
-        let $frmAlumno = document.querySelector("#frmAlumnos");
-        console.log($frmAlumno,frmAlumnos);
-
-        $frmAlumno.addEventListener('submit', e=>{
-            e.preventDefault();
-
-            console.log(txtCodigoAlumno.value, txtNombreAlumno.value, txtDireccionAlumno.value, txtGeneroAlumno.value,
-            txtNacimientoAlumno.value, txtCelularAlumno.value);
-        });
-
+        const { createApp } = Vue;
+        createApp({
+            data() {
+                return {
+                    buscar: '',
+                    docentes:[],
+                    accion : 'nuevo',
+                    docente:{
+                        idDocente:0,
+                        codigo:'',
+                        nombre:'',
+                        numero:'',
+                        direccion:''
+                    }
+                }
+            },
+            methods:{
+                nuevoDocente(){
+                    this.accion = 'nuevo';
+                    this.docente.idDocente = '';
+                    this.docente.codigo = '';
+                    this.docente.nombre = '';
+                    this.docente.numero = '';
+                    this.docente.direccion = '';
+                },
+                modificarDocente(docente){
+                    this.accion = 'modificar';
+                    this.docente = docente;
+                },
+                guardarDocente(){
+                    this.listarDocentes();
+                    if( this.accion==='nuevo' ){
+                        this.docente.idDocente = new Date().getTime().toString(16);//las cantidad milisegundos y lo convierte en hexadecimal
+                        this.docentes.push( JSON.parse(JSON.stringify(this.docente)) );
+                    }else if(this.accion==='modificar'){
+                        //hacer la busqueda y modificar el registro
+                        let index = this.docentes.findIndex(docente=>docente.idDocente==this.docente.idDocente);
+                        this.docentes[index] = JSON.parse(JSON.stringify(this.docente));
+                    }else if(this.accion==='eliminar'){
+                        let index = this.docentes.findIndex(docente=>docente.idDocente==this.docente.idDocente);
+                        this.docentes.splice(index, 1);
+                    }
+                    localStorage.setItem('docentes', JSON.stringify(this.docentes));
+                    this.nuevoDocente();
+                },
+                eliminarDocente(docente){
+                    if( confirm(`Esta seguro de eliminar el docente ${docente.nombre}?`) ){
+                        this.accion="eliminar";
+                        this.docente = docente;
+                        this.guardarDocente();
+                    }
+                },
+                listarDocentes(){
+                    this.docentes = JSON.parse( localStorage.getItem('docentes') || "[]" )
+                        .filter(docente=>docente.nombre.toLowerCase().indexOf(this.buscar.toLowerCase())>-1);
+                }
+            },
+            created(){
+                this.listarDocentes();
+            }
+        }).mount('#app')
     </script>
 </body>
 </html>

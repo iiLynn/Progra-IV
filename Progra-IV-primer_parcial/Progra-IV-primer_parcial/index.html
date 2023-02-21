@@ -1,0 +1,155 @@
+<!DOCTYPE html><!-- Definicion de tipo de documento -->
+<html lang="en"><!-- Apertura de la pagina html -->
+<head><!-- Encabezado de la pagina html -->
+    <meta charset="UTF-8"><!-- Codificacion de Caracteres especiales  -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- IE -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <title>::.. APP ACADEMICA ..::</title>
+</head>
+<body><!-- Contenido de la pagina html -->
+    <div class="container" id="app">
+        <div class="row">
+            <div class="col-12 col-md-12">
+                <div class="card border-primary">
+                    <div class="card-header bg-primary text-white">REGISTRO DE AUTOR</div>
+                    <div class="card-body">
+                        <form id="frmDocente" @submit.prevent="guardarDocente" @reset.prevent="nuevoDocente()">
+                            <div class="row p-1">
+                                <div class="col-3 col-md-2">NOMBRE</div>
+                                <div class="col-9 col-md-3">
+                                    <input class="form-control" type="text" v-model="docente.nombre" name="txtCodigoDocente" id="txtCodigoDocente">
+                                </div>
+                            </div>
+                            <div class="row p-1">
+                                <div class="col-3 col-md-2">CODIGO</div>
+                                <div class="col-9 col-md-6">
+                                    <input class="form-control" type="text" v-model="docente.codigo" name="txtNombreDocente" id="txtNombreDocente">
+                                </div>
+                            </div>
+                            <div class="row p-1">
+                                <div class="col-3 col-md-2">PAIS</div>
+                                <div class="col-9 col-md-9">
+                                    <input class="form-control" type="text" v-model="docente.pais" name="txtNombreDocente" id="txtNombreDocente">
+                                </div>
+                            
+                            </div>
+                                  <div class="row p-1">
+                                <div class="col-3 col-md-2">TELEFONO</div>
+                                <div class="col-9 col-md-9">
+                                    <input class="form-control" type="text" v-model="docente.telefono" name="txtNombreDocente" id="txtNombreDocente">
+                                </div>
+                                <div class="col col-md-6">
+                                    <input class="btn btn-success" type="submit" value="Guardar Datos">
+                                </div>
+                                <div class="col col-md-6">
+                                    <input class="btn btn-warning" type="reset" value="Nuevo Registro">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12">
+                <div class="card text-bg-light">
+                    <div class="card-header">CONSULTA DE AUTORES</div>
+                    <div class="card-body">
+                        <form>
+                            <table class="table table-dark table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>BUSCAR:</th>
+                                        <th colspan="4"><input type="text" @keyup="listarDocentes()" v-model="buscar" 
+                                            class="form-control" placeholder="Busar por nombre" ></th>
+                                    </tr>
+                                    <tr>
+                                        <th>NOMBRE</th>
+                                        <th>CODIGO</th>
+                                        <th>PAIS</th>
+                                        <th>TELEFONO</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="docente in docentes" @click='modificarDocente(docente)' :key="docente.idDocente">
+                                        <td>{{docente.nombre}}</td>
+                                        <td>{{docente.codigo}}</td>
+                                        <td>{{docente.pais}}</td>
+                                        <td>{{docente.telefono}}</td>
+                                        <td><button @click.prevent="eliminarDocente(docente)" class="btn btn-danger">Eliminar</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const { createApp } = Vue;
+        createApp({
+            data() {
+                return {
+                    buscar: '',
+                    docentes:[],
+                    accion : 'nuevo',
+                    docente:{
+                        idautor:0,
+                        nombre:'',
+                        codigo:'',
+                        pais:'',
+                        telefono:''
+                    }
+                }
+            },
+            methods:{
+                nuevoDocente(){
+                    this.accion = 'nuevo';
+                    this.docente.idautor = '';
+                    this.docente.nombre = '';
+                    this.docente.codigo = '';
+                    this.docente.pais = '';
+                    this.docente.telefono = '';
+                },
+                modificarDocente(docente){
+                    this.accion = 'modificar';
+                    this.docente = docente;
+                },
+                guardarDocente(){
+                    this.listarDocentes();
+                    if( this.accion==='nuevo' ){
+                        this.docente.idDocente = new Date().getTime().toString(16);//las cantidad milisegundos y lo convierte en hexadecimal
+                        this.docentes.push( JSON.parse(JSON.stringify(this.docente)) );
+                    }else if(this.accion==='modificar'){
+                        //hacer la busqueda y modificar el registro
+                        let index = this.docentes.findIndex(docente=>docente.idDocente==this.docente.idDocente);
+                        this.docentes[index] = JSON.parse(JSON.stringify(this.docente));
+                    }else if(this.accion==='eliminar'){
+                        let index = this.docentes.findIndex(docente=>docente.idDocente==this.docente.idDocente);
+                        this.docentes.splice(index, 1);
+                    }
+                    localStorage.setItem('docentes', JSON.stringify(this.docentes));
+                    this.nuevoDocente();
+                },
+                eliminarDocente(docente){
+                    if( confirm(`Esta seguro de eliminar el docente ${docente.nombre}?`) ){
+                        this.accion="eliminar";
+                        this.docente = docente;
+                        this.guardarDocente();
+                    }
+                },
+                listarDocentes(){
+                    this.docentes = JSON.parse( localStorage.getItem('docentes') || "[]" )
+                        .filter(docente=>docente.nombre.toLowerCase().indexOf(this.buscar.toLowerCase())>-1);
+                }
+            },
+            created(){
+                this.listarDocentes();
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
